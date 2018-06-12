@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { Header } from './components/Header';
+import { Home } from './components/Home';
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      homeLink: "Home"
+    };
+  }
+  onGreet(){
+    alert("hello world");
+  }
+  onChangeLinkName(newName){
+    this.setState({
+      homeLink:newName
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container">
+          <div className="row">
+            <div className="col-xs-10 col-xs-offset-1">
+              <Header homeLink={this.state.homeLink} />
+            </div>
+          </div>
+
+        <div className="row">
+          <div className="col-xs-10 col-xs-offset-1">
+            <Home
+            
+            name={"Max"} initialAge= {34}
+            greet={this.onGreet}
+            changeLink={this.onChangeLinkName.bind(this)}
+             />
+          </div>
+        </div>
       </div>
     );
   }
